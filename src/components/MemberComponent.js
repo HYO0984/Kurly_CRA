@@ -542,8 +542,7 @@ const MemberComponent = ({modal, modalShowFn,이용약관동의}) => {
     //체크시 필수 체크
     const onChangeService=(e)=>{
       let imsi = [];
-      let cnt = 0;
-
+      const {이용약관동의} =field;
       if(e.target.checked){ //체크되면
           //sns 이메일
         if(e.target.value==='무료배송, 할인쿠폰 등 혜택/정보 수신 동의'){ //chk4
@@ -561,23 +560,23 @@ const MemberComponent = ({modal, modalShowFn,이용약관동의}) => {
       }
       else{//체크해제시는 배열에 저장된 체크해제된 해당 데이터 삭제 : 체크 해제된 데이터만 filter()
         if(e.target.value ==='무료배송, 할인쿠폰 등 혜택/정보 수신 동의'){ //chk4
-          imsi =  field.이용약관동의.filter((item)=>item !== e.target.value) //삭제1
+          imsi =  이용약관동의.filter((item)=>item !== e.target.value) //삭제1
           imsi = imsi.filter((item)=> item !== 'SNS')                       //삭제2
           imsi = imsi.filter((item)=> item !== '이메일')                     //삭제3
           setField({...field,이용약관동의:imsi})
         }
         else if(field.이용약관동의.includes('SNS')  && e.target.value === '이메일'){
-          imsi =  field.이용약관동의.filter((item)=>item !=='이메일') //삭제1
+          imsi =  이용약관동의.filter((item)=>item !=='이메일') //삭제1
           imsi =  imsi.filter((item)=>item !=='무료배송, 할인쿠폰 등 혜택/정보 수신 동의') //삭제2
           setField({...field,이용약관동의:imsi})
         }
         else if(field.이용약관동의.includes('이메일')  && e.target.value === 'SNS'){
-          imsi =  field.이용약관동의.filter((item)=>item !=='SNS') //삭제1
+          imsi =  이용약관동의.filter((item)=>item !=='SNS') //삭제1
           imsi =  imsi.filter((item)=>item !=='무료배송, 할인쿠폰 등 혜택/정보 수신 동의') //삭제2
           setField({...field,이용약관동의:imsi})
         }
         else{
-          imsi= field.이용약관동의.filter((item)=> item !== e.target.value); //삭제하고 나머지만 저장
+          imsi= 이용약관동의.filter((item)=> item !== e.target.value); //삭제하고 나머지만 저장
           setField({...field, 이용약관동의: imsi });
         }
       }
